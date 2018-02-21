@@ -33,7 +33,7 @@ __Data:__ '19000 Armenian_Online_Job_Postings' from Kaggle(https://www.kaggle.co
    - Month: Month of the announcement (derived from the field date). 
    - IT: TRUE if the job is an IT job. This variable is created by a simple search of IT job titles within the "Title" column.
 
-### 1. Gathering
+### 1. Gathering Intro
 
 
 
