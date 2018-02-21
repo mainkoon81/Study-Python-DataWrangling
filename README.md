@@ -1,8 +1,8 @@
 # Study-DataWrangling (Python + R)
 
- - Gathering
- - Assessing
- - Cleaning
+ > 1. Gathering
+ > 2. Assessing
+ > 3. Cleaning
 
 ### Intro
 __Data:__ '19000 Armenian_Online_Job_Postings' from Kaggle(https://www.kaggle.com/udacity/armenian-online-job-postings) 
@@ -32,6 +32,8 @@ __Data:__ '19000 Armenian_Online_Job_Postings' from Kaggle(https://www.kaggle.co
    - Year: Year of the announcement (derived from the field date). 
    - Month: Month of the announcement (derived from the field date). 
    - IT: TRUE if the job is an IT job. This variable is created by a simple search of IT job titles within the "Title" column.
+
+## 1. Gathering
 
 
 
