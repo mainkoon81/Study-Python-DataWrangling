@@ -1,6 +1,8 @@
 # Study-DataWrangling (Python + R)
 
-
+ - Gathering
+ - Assessing
+ - Cleaning
 
 ### Intro
 __Data:__ '19000 Armenian_Online_Job_Postings' from Kaggle(https://www.kaggle.com/udacity/armenian-online-job-postings) 
