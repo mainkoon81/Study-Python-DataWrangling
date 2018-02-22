@@ -128,10 +128,29 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/36513679-af1f0b80-1768-11e8-9725-631168fb5444.jpg" width="600" height="160" /> 
 
+----------------------------------------------------------------------------------------------------------------------
 ## 1. Gathering
+> Gathering data varies from project to project. Sometimes you're just given data. Sometimes you need to search for the right data for your project. Sometimes the data you need isn't readily available, and you need to generate it yourself somehow. When you do find your data, it's not unusual for it to be spread across several different sources and file formats, which makes things tricky when organizing the data in your programming environment.
+ - Learn about the structure of each file format.
+ - Learn how to handle that file format using Python and its libraries.
+ - Gather each piece of data to later join together to create your master dataset.
 
-
-
+#### command prompt
+ - HOW to execute commands like changing the working folder, viewing the contents of a directory, creating and renaming folders, copying, deleting files and folders, and launching any application from the Command Prompt ?
+ - `cd..`, `dir`, `md`, `ren`
+ - copy a file: `copy location\filename.extension newlocation\newname.extension`(If you are copying within the same directory you don't have to put the path in command)
+ - copy a folder and its files, use the 'XCOPY' command followed by the “/s /i” operators: 
+   - `xcopy /s /i d:\bird c:\Backup_bird`
+     - `/s` parameter ensures all the directories and subdirectories will be copied
+     - `/i` parameter creates a new directory if the destination folder doesn't exist and will copy all the files.
+ - Get rid of a file: `del`
+   - `del *.DOC` : delete all files with the DOC extension
+   - `del Test*.*` : delete all files beginning with Test;
+   - `del *.*` : delete ALL files from the current folder.
+ - Get rid of a folder: `rd`
+ - Launch an application: navigate to the folder that contains the executable and type the program’s name.
+   - for example, `cd /d c:\windows\System32\` Then write program's name and press Enter. 
+     - `/d` parameter is used to change the current drive to a specific folder from another disk volume.
 
 
 
