@@ -152,6 +152,16 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
    - for example, `cd /d c:\windows\System32\` Then write program's name and press Enter. 
      - `/d` parameter is used to change the current drive to a specific folder from another disk volume.
 
+#### Flat files
+ - CSV, TSV, 
+   - (+) They're text files and therefore human readable.
+   - (+) Software that can read/write text files is ubiquitous
+   - (+) Great for small datasets
+   - (-) Not great for large datasets
+   - (-) Sharing data can be cumbersome
+ - pandas has one main function for parsing flat files and it is `pd.read_csv()`
+
+#### Web Scraping
 
 
 
