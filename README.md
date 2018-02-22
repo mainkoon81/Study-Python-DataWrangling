@@ -4,7 +4,6 @@
  > 2. Assessing
  > 3. Cleaning
 
-### Intro
 __Data:__ '19000 Armenian_Online_Job_Postings' from Kaggle(https://www.kaggle.com/udacity/armenian-online-job-postings) 
  - The online job market is a good indicator of overall demand for labor in an economy. This dataset consists of 19,000 job postings from 2004 to 2015 posted on CareerCenter, an Armenian human resource portal. Since postings are text documents and tend to have similar structures, text mining can be used to extract features like posting date, job title, company name, job description, salary, and more. Postings that had no structure or were not job-related were removed. The data was originally scraped from a Yahoo! mailing group.
  - The following features were extracted from each job posting, if included:
@@ -107,7 +106,11 @@ for i in asap_list:
 for i in asap_list:
     assert i not in df_clean.StartDate.values         
 ```
- - What's the percentage of job postings have 'urgent' start date ? 
+> Q. What's the percentage of job postings have 'urgent' start date ? 
+ - numerator ? df.column.value_counts()[entry]
+ - denominater ? df.column.count()
+ - numerator / denominater 
+ - What about plotting ? 
 ```
 import matplotlib.pyplot as plt
 %matplotlib inline
@@ -125,6 +128,7 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/36513679-af1f0b80-1768-11e8-9725-631168fb5444.jpg" width="600" height="160" /> 
 
+## 1. Gathering
 
 
 
