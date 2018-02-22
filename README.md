@@ -33,7 +33,159 @@ __Data:__ '19000 Armenian_Online_Job_Postings' from Kaggle(https://www.kaggle.co
    - Month: Month of the announcement (derived from the field date). 
    - IT: TRUE if the job is an IT job. This variable is created by a simple search of IT job titles within the "Title" column.
 
-### 1. Gathering Intro
+### Intro: Gathering example
+```
+import zipfile
+import pandas as pd
+```
+Extract all contents from zip file ('filename', 'mode' we want)
+```
+with zipfile.ZipFile('online-job-postings.csv.zip', 'r') as myzip:
+    myzip.extractall()
+```
+Read CSV (comma-separated) file into DataFrame
+```
+df = pd.read_csv('online-job-postings.csv')
+```
+<img src="https://user-images.githubusercontent.com/31917400/36513316-ffa98dfc-1766-11e8-8f26-b8fd224eaa19.jpg" />
+
+### Intro: Assessing example
+ - It's about detecting the problems searching for Quality and Tidiness.
+   - `df.head()`, `df.info()`, `df.describe()`, `df.value_counts()`
+ - **Quality** (inconsistency, inaccuracy, NaN) 
+   - Check: Missing values (NaN)
+   - Check: value inconsistency, accuracy
+   - Check: Non-descriptive column headers
+ 
+ - **Tidiness** (clean columns, clean rows)
+   - Check: Each variable is a column? Each observation is a row? Each type of observational unit is a table?
+   - Check: Duplicated representation of data (ex..'Date' column...'Year' and 'Month' also have their own column ?) 
+
+### Intro: Cleaning example
+ - a) Define your plan in writing
+ - b) Write your code and test it
+ 
+For example:
+ - Using `rename()`, Select all nondescriptive and misspelled column headers(ApplicationP, AboutC, RequiredQual, JobRequirment) and replace them with full words (ApplicationProcedure, AboutCompany,..etc) 
+```
+df_clean = df.copy()
+df_clean = df_clean.rename(columns={'ApplicationP': 'ApplicationProcedure',
+                                    'RequiredQual': 'RequiredQualification',
+                                    'JobRequirment': 'JobRequirement',
+                                    'AboutC': 'AboutCompany'})
+df_clean.StartDate.value_counts()
+```
+ - As you know, 'Series' is the column of pandas' dataframe !
+ - Using series`.replace(to_replace, value, inplace)`, Select all records in the 'StartDate' column that have 'As soon as possible', 'immediately', etc and replace the text in those cells with 'ASAP'.
+ - Using `assert` and series`.values` returning Series as numpy ndarray, Test your code.
+```
+asap_list = ['Immediately', 'As soon as possible', 'Upon hiring',
+             'Immediate', 'Immediate employment', 'As soon as possible.', 'Immediate job opportunity',
+             '"Immediate employment, after passing the interview."',
+             'ASAP preferred', 'Employment contract signature date',
+             'Immediate employment opportunity', 'Immidiately', 'ASA',
+             'Asap', '"The position is open immediately but has a flexible start date depending on the candidates earliest availability."',
+             'Immediately upon agreement', '20 November 2014 or ASAP',
+             'immediately', 'Immediatelly',
+             '"Immediately upon selection or no later than November 15, 2009."',
+             'Immediate job opening', 'Immediate hiring', 'Upon selection',
+             'As soon as practical', 'Immadiate', 'As soon as posible',
+             'Immediately with 2 months probation period',
+             '12 November 2012 or ASAP', 'Immediate employment after passing the interview',
+             'Immediately/ upon agreement', '01 September 2014 or ASAP',
+             'Immediately or as per agreement', 'as soon as possible',
+             'As soon as Possible', 'in the nearest future', 'immediate',
+             '01 April 2014 or ASAP', 'Immidiatly', 'Urgent',
+             'Immediate or earliest possible', 'Immediate hire',
+             'Earliest  possible', 'ASAP with 3 months probation period.',
+             'Immediate employment opportunity.', 'Immediate employment.',
+             'Immidietly', 'Imminent', 'September 2014 or ASAP', 'Imediately']
+
+for i in asap_list:
+    df_clean['StartDate'].replace(i, 'ASAP', inplace=True)
+    
+for i in asap_list:
+    assert i not in df_clean.StartDate.values         
+```
+ - What's the percentage of job postings have 'urgent' start date ? 
+```
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+df_clean.StartDate.value_counts().plot(kind='pie')
+```
+So messy labels..remove them except 'ASAP'
+```
+import numpy as np
+labelsss = np.full(len(df_clean.StartDate.value_counts()), "", dtype=object)
+labelsss[0] = 'ASAP'
+
+df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
+
+```
+<img src="https://user-images.githubusercontent.com/31917400/36513679-af1f0b80-1768-11e8-9725-631168fb5444.jpg" width="600" height="160" /> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
