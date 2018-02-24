@@ -162,7 +162,9 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
  - pandas has one main function for parsing flat files and it is `pd.read_csv()`
 
 #### Web Scraping
-
+ - BeautifulSoup is HTML parser written in Python. 
+   - __Step_1.__ Make a soup: passing the path to our HTML file into a **file handle** then passing that **file handle** into the BeautifulSoup constructor. And specify the **parser name** as a parameter of the constructor. 
+   - __Step_2.__  
 
 
 
