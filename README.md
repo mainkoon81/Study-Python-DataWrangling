@@ -51,12 +51,12 @@ df = pd.read_csv('online-job-postings.csv')
 ### Intro: Assessing example
  - It's about detecting the problems searching for Quality and Tidiness.
    - `df.head()`, `df.info()`, `df.describe()`, `df.value_counts()`
- - **Quality** (NaN, inaccuracy, inconsistency) 
+ - **Quality** (content issues: NaN, inaccuracy, inconsistency) 
    - Check: Missing values (NaN)
    - Check: value inconsistency, accuracy
    - Check: Non-descriptive column headers, duplicates
  
- - **Tidiness** (structural issue: columns, rows)
+ - **Tidiness** (structural issues: columns, rows)
    - Check: Each variable is a column? Each observation is a row? Each type of observational unit is a table?
    - Check: Duplicated representation of data (ex..'Date' column...'Year' and 'Month' also have their own column ?) 
 
