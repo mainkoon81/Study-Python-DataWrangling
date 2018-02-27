@@ -50,7 +50,7 @@ df = pd.read_csv('online-job-postings.csv')
 
 ### Intro: Assessing example
  - It's about detecting the problems searching for Quality and Tidiness.
-   - `df.head()`, `df.info()`, `df.describe()`, `df['col'].value_counts()`, `df['col'].loc()`
+   - `df.head()`, `df.info()`, `df.describe()`, `df['col'].value_counts()`, `df[condition].loc[]`
  - **Quality** (content issues: NaN, inaccuracy, inconsistency) 
    - Check: Missing values (NaN)
    - Check: value inconsistency, accuracy
