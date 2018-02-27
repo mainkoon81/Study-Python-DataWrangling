@@ -56,8 +56,8 @@ df = pd.read_csv('online-job-postings.csv')
    - Check: value inconsistency, accuracy
    - Check: Non-descriptive column headers, duplicates
  
- - **Tidiness** (structural -col or row- issues: multiple meanings on one table)
-   - Check: Each variable is a column? Each observation is a row? Each type of observational unit is a table?
+ - **Tidiness** (structural issues of col and row: too wide ?? multiple meanings on one table)
+   - Check: Each variable is a column? Each observation is a row? Each type of observational unit is a table? Each obv unit should form a individual table! like a relational database ?
    - Check: Duplicated representation of data (ex..'Date' column...'Year' and 'Month' also have their own column ?)
 <img src="https://user-images.githubusercontent.com/31917400/36759813-89bb4e56-1c10-11e8-9a5a-85ee07bee9dd.jpg" width="600" height="160" /> 
 
