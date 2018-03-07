@@ -292,8 +292,46 @@ For a MediaWiki, the most up to date and [human readable] one in Python is calle
 ```
 import wptools
 ```
+### JSON and Hierarchical data
+Most data from APIs comes in **Json** or **XML** format. In many situation, we are limited in what we can represent in tabular data. Sometimes we have data with fields that have multiple entries (human oriented dataset: wide format). Json is great for accessing these complicated data hierarchies(serialized data). Json is built on 2 key structures.
+
+ - Dictionary: Json object(a collection of key value pairs) `{..dictionary within dictionary..}`
+ - List: Json array(an ordered list of values) `[...vector, sequence...]`
+
+**Read and Write JSON:** So far, JSON data was sourced from an API. That isn't always the case, though! Sometimes you're given a text file with human readable JSON within it. For this situation, the **'json library'** is indispensable. It can parse 'JSON' from strings or files and it can parse 'JSON' into a Python dictionary or list. It can also convert Python dictionaries or lists into 'JSON strings'.
+
+ - **Writing JSON** to a File: transforming Python dict object in to the serialized JSON string.
+   - `json.dump()`: It writes the dict object to the 'text file' in JSON format.
+   - `json.dumps()`: A slight variation on the `json.dump()`. It returns the actual JSON string and gives some more control in Json str.
+```
+import json
+
+data = {}  
+data['people'] = []  
+data['people'].append({'name': 'Scott', 'website': 'stackabuse.com', 'from': 'Nebraska'})
+data['people'].append({'name': 'Larry', 'website': 'google.com', 'from': 'Michigan'})
+data['people'].append({'name': 'Tim', 'website': 'apple.com', 'from': 'Alabama'})
+
+with open('data.txt', 'w') as out_f:  
+    json.dump(data, out_f)
+```
+ - **Reading JSON** from a file: 
+   - `json.load()`: It reads the string from the file, parses the JSON data, populates a Python dict with the data and returns it back.
+   - `json.loads()`: A slight variation on the `json.load()`. It lets us deal with str directly(since many times you probably won't have a file-like object that contains your JSON). 
+```
+with open('data.txt') as json_f:  
+    data = json.load(json_f)
+    for p in data['people']:
+        print('Name: ' + p['name'])
+        print('Website: ' + p['website'])
+        print('From: ' + p['from'])
+        print('')
+```
 ### Page Object from the website
 We can get the 'page' object from  Wikipedia. Simply calling `get()` on a page will automagically fetch extracts, images, infobox data, wikidata, and other metadata via the MediaWiki, Wikidata, and RESTBase APIs.
+
+To access Wikipedia page data via the MediaWiki API with `wptools`, you need each movie's Wikipedia page title, i.e., what comes
+right after the last slash in en.wikipedia.org/wiki/....blahblahblahblah.... in the URL. Here, 'Mahatma_Gandhi' it is. 
 ```
 page = wptools.page('Mahatma_Gandhi').get()
 ```
@@ -306,10 +344,85 @@ page.data['image'][0]['size']
 ```
 2951123
 
+[NOTE]######################################################################################
+As for Image Files, use the `PIL` library(Pillow) and `io` library for **non-text** requests. For example, 
+```
+import requests
+from PIL import Image
+from io import BytesIO
 
+res = requests.get(url)
+i = Image.open(BytesIO(res.content))
+```
+############################################################################################
 
+#1. We're going to query the MediaWiki API using `wptools` to get a **'movie poster URL'** via each page object's image attribute.
+#2. Using that URL, we'll programmatically download that image into a folder called 'bestofrt_posters'.
 
+Let's say...
+```
+title_list = ['The_Wizard_of_Oz_(1939_film)', 'Citizen_Kane', 'The_Third_Man',...................]
 
+import pandas as pd
+import requests   #general web scraping to RAM package 
+import wptools   #'wikipedia-specific' web scraping package
+import os   #filepath, folder editing package
+from PIL import Image 
+from io import BytesIO
+```
+Make directory if it doesn't already exist.
+```
+folder_name = 'bestofrt_posters'
+
+if not os.path.exists(folder_name):
+    os.makedirs(folder_name)
+```
+Create a List of dictionaries to build and convert to a DataFrame later. Note..we made a dict only for error!
+```
+df_list = []
+
+image_errors = {}
+
+for t in title_list:
+    try:
+        # This cell is slow so print ranking to gauge time remaining
+        ranking = title_list.index(t) + 1
+        print(ranking)
+        page = wptools.page(t, silent=True)
+        images = page.get().data['image']
+
+        # First image is usually the poster. Get the Url.
+        first_image_url = images[0]['url']
+        res = requests.get(first_image_url)
+        
+        # Download movie poster image
+        i = Image.open(BytesIO(res.content))
+        image_file_format = first_image_url.split('.')[-1]
+        i.save(folder_name + "/" + str(ranking) + "_" + t + '.' + image_file_format)
+        
+        # Append to list of dictionaries
+        df_list.append({'ranking': int(ranking),
+                        'title': t,
+                        'poster_url': first_image_url})
+    
+    # Not best practice to catch all exceptions but fine for this short script
+    except Exception as e:
+        print(str(ranking) + "_" + t + ": " + str(e))
+        image_errors[str(ranking) + "_" + t] = images
+```
+Take a look at the 'image_errors' dict. 
+```
+for i in image_errors.keys(): 
+    print(i)
+```
+64_Dr._Strangelove / 22_A_Hard_Day%27s_Night_(film) / 53_12_Angry_Men_(1957_film) / 72_Rosemary%27s_Baby_(film)
+
+Create a DataFrame from list of dictionaries.
+```
+df = pd.DataFrame(df_list, columns = ['ranking', 'title', 'poster_url'])
+df = df.sort_values('ranking').reset_index(drop=True); df
+```
+<img src="https://user-images.githubusercontent.com/31917400/37120354-0fb25404-2252-11e8-9b1e-6d370d9efb45.jpg" width="600" height="180" /> 
 
 
 
