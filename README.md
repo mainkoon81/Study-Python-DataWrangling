@@ -291,7 +291,19 @@ For a MediaWiki, the most up to date and [human readable] one in Python is calle
 ```
 import wptools
 ```
+### Page Object from the website
 We can get the 'page' object from  Wikipedia. Simply calling `get()` on a page will automagically fetch extracts, images, infobox data, wikidata, and other metadata via the MediaWiki, Wikidata, and RESTBase APIs.
+```
+page = wptools.page('Mahatma_Gandhi').get()
+```
+page now has the following attributes, which can be accessed using dot notation through `.data`. `page.data['image']`, for example, would return a list of data for 6 images on this specific Wikipedia page.
+<img src="https://user-images.githubusercontent.com/31917400/37098852-dc257a7a-2216-11e8-9805-8c54ad5da83d.jpg" /> 
+
+How big is the first image ?
+```
+page.data['image'][0]['size']
+```
+2951123
 
 
 
