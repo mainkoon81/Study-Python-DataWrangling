@@ -212,9 +212,9 @@ if not os.path.exists(folder_name):
 Automatic Downloading..
 ```    
 urls = ['https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9900_1-the-wizard-of-oz-1939-film/1-the-wizard-of-oz-1939-film.txt',
-                     'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_2-citizen-kane/2-citizen-kane.txt',
-                     'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_3-the-third-man/3-the-third-man.txt',
-                     'https://d17h27t6h515a5.cloudfront.ne.............................................    
+        'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_2-citizen-kane/2-citizen-kane.txt',
+        'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_3-the-third-man/3-the-third-man.txt',
+        'https://d17h27t6h515a5.cloudfront.ne.............................................    
                      
 for i in urls:
     res = requests.get(i)
