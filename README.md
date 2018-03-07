@@ -269,6 +269,7 @@ import pandas as pd
 
 df = pd.DataFrame(df_list, columns = ['title', 'audience_score', 'number_of_audience_ratings'])
 ```
+<img src="https://user-images.githubusercontent.com/31917400/37102722-5e74e70a-2220-11e8-9e69-23b20ce80358.jpg" width="600" height="100" /> 
 
 ### C. Using API and the [Access Library*]
 When do we hit the API? image data ? Screen Scraping ? 
