@@ -356,7 +356,7 @@ i = Image.open(BytesIO(res.content))
 #1. We're going to query the MediaWiki API, using `wptools` to get a **'movie poster URL'** via each page object's image attribute.
 #2. Using that URL, we'll programmatically download that image into a folder called 'bestofrt_posters'.
 
-Here the list of the movie title from wikipedia. Let's say...
+Here the list of the movie title from wikipedia (by order of a movie ranking). Let's say...
 ```
 title_list = ['The_Wizard_of_Oz_(1939_film)', 'Citizen_Kane', 'The_Third_Man',...................]
 
@@ -374,7 +374,7 @@ folder_name = 'bestofrt_posters'
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 ```
-Create a List of dictionaries to build and convert to a DataFrame later. Note..we made a dict only for error!
+Create a List of dictionaries to build and convert to a DataFrame later. Also..we made a dict only for error! what we need from each movie wikipedia website are 'ranking', 'title', 'poster_url'. 
 ```
 df_list = []
 
@@ -385,11 +385,13 @@ for t in title_list:
         # This cell is slow so print ranking to gauge time remaining
         ranking = title_list.index(t) + 1
         print(ranking)
-        page = wptools.page(t, silent=True)
-        images = page.get().data['image']
+        pagee = wptools.page(t, silent=True)
+        images = pagee.get().data['image']
 
-        # First image is usually the poster. Get the Url.
+        # First image is usually the poster. That's the image we want. Get the Url.
         first_image_url = images[0]['url']
+        
+        #Now we obtain the image file in our RAM !
         res = requests.get(first_image_url)
         
         # Download movie poster image
