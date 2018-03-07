@@ -4,6 +4,23 @@
  > 2. Assessing
  > 3. Cleaning
 
+__command prompt summary__
+ - HOW to execute commands like changing the working folder, viewing the contents of a directory, creating and renaming folders, copying, deleting files and folders, and launching any application from the Command Prompt ?
+ - `cd..`, `dir`, `md`, `ren`
+ - copy a file: `copy location\filename.extension newlocation\newname.extension`(If you are copying within the same directory you don't have to put the path in command)
+ - copy a folder and its files, use the 'XCOPY' command followed by the “/s /i” operators: 
+   - `xcopy /s /i d:\bird c:\Backup_bird`
+     - `/s` parameter ensures all the directories and subdirectories will be copied
+     - `/i` parameter creates a new directory if the destination folder doesn't exist and will copy all the files.
+ - Get rid of a file: `del`
+   - `del *.DOC` : delete all files with the DOC extension
+   - `del Test*.*` : delete all files beginning with Test;
+   - `del *.*` : delete ALL files from the current folder.
+ - Get rid of a folder: `rd`
+ - Launch an application: navigate to the folder that contains the executable and type the program’s name.
+   - for example, `cd /d c:\windows\System32\` Then write program's name and press Enter. 
+     - `/d` parameter is used to change the current drive to a specific folder from another disk volume.
+
 __Data:__ '19000 Armenian_Online_Job_Postings' from Kaggle(https://www.kaggle.com/udacity/armenian-online-job-postings) 
  - The online job market is a good indicator of overall demand for labor in an economy. This dataset consists of 19,000 job postings from 2004 to 2015 posted on CareerCenter, an Armenian human resource portal. Since postings are text documents and tend to have similar structures, text mining can be used to extract features like posting date, job title, company name, job description, salary, and more. Postings that had no structure or were not job-related were removed. The data was originally scraped from a Yahoo! mailing group.
  - The following features were extracted from each job posting, if included:
@@ -33,6 +50,10 @@ __Data:__ '19000 Armenian_Online_Job_Postings' from Kaggle(https://www.kaggle.co
    - IT: TRUE if the job is an IT job. This variable is created by a simple search of IT job titles within the "Title" column.
 
 ### Intro: Gathering example
+> Gathering data varies from project to project. Sometimes you're just given data. Sometimes you need to search for the right data for your project. Sometimes the data you need isn't readily available, and you need to generate it yourself somehow. When you do find your data, it's not unusual for it to be spread across several different sources and file formats, which makes things tricky when organizing the data in your programming environment.
+ - Learn about the structure of each file format.
+ - Learn how to handle that file format using Python and its libraries.
+ - Gather each piece of data to later join together to create your master dataset.
 ```
 import zipfile
 import pandas as pd
@@ -49,7 +70,7 @@ df = pd.read_csv('online-job-postings.csv')
 <img src="https://user-images.githubusercontent.com/31917400/36513316-ffa98dfc-1766-11e8-8f26-b8fd224eaa19.jpg" />
 
 ### Intro: Assessing example
- - It's about detecting the problems searching for Quality and Tidiness.
+> It's about detecting the problems searching for Quality and Tidiness.
    - `df.head()`, `df.info()`, `df.describe()`, `df['col'].value_counts()`, `df[condition].loc[]`
  - **Quality** (content issues: NaN, inaccuracy, inconsistency) 
    - Check: Missing values (NaN)
@@ -61,7 +82,8 @@ df = pd.read_csv('online-job-postings.csv')
    - Check: Duplicated representation of data (ex..'Date' column...'Year' and 'Month' also have their own column ?)
 <img src="https://user-images.githubusercontent.com/31917400/36759813-89bb4e56-1c10-11e8-9a5a-85ee07bee9dd.jpg" width="600" height="160" /> 
 
-### Intro: Cleaning example
+### Intro: Cleaning example***
+> Two things
  - a) Define your plan in writing
  - b) Write your code and test it
  
@@ -131,27 +153,6 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
 
 ----------------------------------------------------------------------------------------------------------------------
 ## 1. Gathering
-> Gathering data varies from project to project. Sometimes you're just given data. Sometimes you need to search for the right data for your project. Sometimes the data you need isn't readily available, and you need to generate it yourself somehow. When you do find your data, it's not unusual for it to be spread across several different sources and file formats, which makes things tricky when organizing the data in your programming environment.
- - Learn about the structure of each file format.
- - Learn how to handle that file format using Python and its libraries.
- - Gather each piece of data to later join together to create your master dataset.
-
-#### command prompt
- - HOW to execute commands like changing the working folder, viewing the contents of a directory, creating and renaming folders, copying, deleting files and folders, and launching any application from the Command Prompt ?
- - `cd..`, `dir`, `md`, `ren`
- - copy a file: `copy location\filename.extension newlocation\newname.extension`(If you are copying within the same directory you don't have to put the path in command)
- - copy a folder and its files, use the 'XCOPY' command followed by the “/s /i” operators: 
-   - `xcopy /s /i d:\bird c:\Backup_bird`
-     - `/s` parameter ensures all the directories and subdirectories will be copied
-     - `/i` parameter creates a new directory if the destination folder doesn't exist and will copy all the files.
- - Get rid of a file: `del`
-   - `del *.DOC` : delete all files with the DOC extension
-   - `del Test*.*` : delete all files beginning with Test;
-   - `del *.*` : delete ALL files from the current folder.
- - Get rid of a folder: `rd`
- - Launch an application: navigate to the folder that contains the executable and type the program’s name.
-   - for example, `cd /d c:\windows\System32\` Then write program's name and press Enter. 
-     - `/d` parameter is used to change the current drive to a specific folder from another disk volume.
 
 #### Flat files
  - CSV, TSV, 
