@@ -152,7 +152,7 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
 <img src="https://user-images.githubusercontent.com/31917400/36513679-af1f0b80-1768-11e8-9725-631168fb5444.jpg" width="600" height="160" /> 
 
 ----------------------------------------------------------------------------------------------------------------------
-## 1. Gathering
+# 1. Gathering
 
 #### Flat files
  - CSV, TSV, 
@@ -170,6 +170,8 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
 import requests 
 from bs4 import BeautifulSoup
 ```
+
+### A. How to access to the HTML ?
  - __Case_1:__ Reading a single HTML file stored in the RAM 
 
 Passing the 'url' to our HTML file into a **file handler** then passing this **file handler**(with adding`.content`) into the 'BeautifulSoup constructor'. And specify the **parser name**.
@@ -198,6 +200,35 @@ with open('folder_we_want/et_the_extraterrestrial.html') as f:
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37093783-7b0cca80-2208-11e8-84f5-b34a95e185a6.jpg" width="600" height="120" /> 
 
+ - __Case_3:__ What if having so many files to download ?
+
+Always start with making a folder first.
+```
+import os
+
+folder_name = 'ebert_reviews'
+if not os.path.exists(folder_name):
+    os.makedirs(folder_name)
+```
+Automatic Downloading..
+```    
+urls = ['https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9900_1-the-wizard-of-oz-1939-film/1-the-wizard-of-oz-1939-film.txt',
+                     'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_2-citizen-kane/2-citizen-kane.txt',
+                     'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_3-the-third-man/3-the-third-man.txt',
+                     'https://d17h27t6h515a5.cloudfront.ne.............................................    
+                     
+for i in urls:
+    res = requests.get(i)
+    with open(os.path.join(folder_name, i.split('/')[-1]), mode = 'wb')as f: 
+        f.write(res.content)                                          
+```
+Check the size of our folder. How many files did we download ? 
+```
+len(os.listdir(folder_name))
+```
+
+### B. Find and extract a certain data from HTML ?
+ - Well...`soup.find()`, `soup.find_all()`...need to .. 
  - Know all decendents of the HTML file 
 ```
 for i in soup.descendants:
@@ -208,19 +239,59 @@ for i in soup.descendants:
 
  - Know all tags of the HTML file
 ```
-for tag in soup.find_all(True):
-    print(tag.name)
+for i in soup.find_all(True):
+    print(i.name)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37095379-a9e5e99a-220d-11e8-83e7-9e958b9b4b38.jpg" width="600" height="100" /> 
 
+ - Automatic Generation of a DataFrame
+```
+df_list = []
+folder = 'rt_html' # here we already saved all files in our folder. 
+for i in os.listdir(folder):
+        # this is where we specify the folder to save our files
+    with open(os.path.join(folder, i)) as file:
+        soup = BeautifulSoup(file, 'lxml') # parsing each file
+        
+        title = soup.find('title').contents[0][:-len('- Rotten Tomatoes')]
+#        print(title)
+        audience_score = soup.find('div', class_='audience-score meter').find('span').contents[0][:-1]
+#        print(audience_score)
+        num_audience_ratings = soup.find('div', class_='audience-info hidden-xs superPageFontColor')
+        num_audience_ratings = num_audience_ratings.find_all('div')[1].contents[2].strip().replace(',','')        
+#        print(num_audience_ratings)
+        
+        # Append to list of dictionaries
+        df_list.append({'title': title,
+                        'audience_score': int(audience_score),
+                        'number_of_audience_ratings': int(num_audience_ratings)})
+import pandas as pd
 
+df = pd.DataFrame(df_list, columns = ['title', 'audience_score', 'number_of_audience_ratings'])
+```
 
+### C. Using API and the [Access Library*]
+When do we hit the API? image data ? Screen Scraping ? 
 
+The API of each website provides 'access' to only 'certain information' allowed by the website. For example, by implementing the API of the Rotten Tomatoes, we can get 'critic,audience score', 'critic reviews'. And Rotten Tomatoes' access library(or client library) is called `rtsimple`.
 
+There are a bunch of different **'Access Libraries'** for 'MediaWiki' to satisfy the variety of programming languages that exist.
+ - Wikipedia-API : Easy to use Python 3 library. 
+ - **wptools** : Wikipedia tools (for Humans).
+ - Pywikibot : A collection of python scripts and a powerful library for bot writing.
+ - wikitools : Provides several layers of abstraction around the API. Doesn't support Python 3.
+ - mwclient : A Python library that makes most of the API functions accessible....
+ - etc....
 
-
-
-
+### Human Readable.. ?
+For a MediaWiki, the most up to date and [human readable] one in Python is called `wptools`. For example, the analogous relationship for Twitter is:
+ - MediaWiki API → wptools
+ - Twitter API → tweepy
+ - wptools guideline: (https://github.com/siznax/wptools) 
+```
+import wptools
+```
+We can get the 'page' object from  Wikipedia. Simply calling `get()` on a page will automagically fetch extracts, images, infobox data, wikidata, and other metadata via the MediaWiki, Wikidata, and RESTBase APIs.
 
 
 
