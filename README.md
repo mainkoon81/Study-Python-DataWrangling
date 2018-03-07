@@ -184,7 +184,7 @@ soup = BeautifulSoup(res.content, 'lxml'); soup
 
  - __Case_2:__ Download a single HTML file and save in our local machine (**where the current ipython file is located**).
 
-Passing the 'url' to our HTML file into a **file handler** then passing this **file handler**(with adding`.content`) into the 'python file writer', matching up this with our made up **file information**(name, path, etc).
+Passing the 'url' to our HTML file into a **file handler** then passing this **file handler**(with adding`.content`) into the 'python file writer', matching up this with our made up a **file information**(name, path, etc).
 ```
 url = 'https://www.rottentomatoes.com/m/et_the_extraterrestrial'
 res = requests.get(url) 
@@ -209,7 +209,7 @@ folder_name = 'ebert_reviews'
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 ```
-Automatic Downloading..
+Automatic Downloading and saving...
 ```    
 urls = ['https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9900_1-the-wizard-of-oz-1939-film/1-the-wizard-of-oz-1939-film.txt',
         'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_2-citizen-kane/2-citizen-kane.txt',
