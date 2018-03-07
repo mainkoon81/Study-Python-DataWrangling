@@ -154,7 +154,7 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
 ----------------------------------------------------------------------------------------------------------------------
 # 1. Gathering
 
-#### Flat files
+> Flat files
  - CSV, TSV, 
    - (+) They're text files and therefore human readable.
    - (+) Software that can read/write text files is ubiquitous
@@ -163,14 +163,13 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
    - (-) Sharing data can be cumbersome
  - pandas has one main function for parsing flat files and it is `pd.read_csv()`
 
-#### Web Scraping
- - BeautifulSoup is HTML parser written in Python. 
- - file handler and soup-constructor
+> Web Scraping
+ - BeautifulSoup is HTML parser(soup-constructor) written in Python. 
+ - For a file handler and For a soup-constructor
 ```
 import requests 
 from bs4 import BeautifulSoup
 ```
-
 ### A. How to access to the HTML ?
  - __Case_1:__ Reading a single HTML file stored in the RAM 
 
@@ -226,9 +225,7 @@ Check the size of our folder. How many files did we download ?
 ```
 len(os.listdir(folder_name))
 ```
-
-### B. Find and extract a certain data from HTML ?
- - Well...`soup.find()`, `soup.find_all()`...need to .. 
+ - Find and extract a certain data from HTML ? Well...`soup.find()`, `soup.find_all()`...need to .. FUXX!! So many..
  - Know all decendents of the HTML file 
 ```
 for i in soup.descendants:
@@ -271,7 +268,7 @@ df = pd.DataFrame(df_list, columns = ['title', 'audience_score', 'number_of_audi
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37102722-5e74e70a-2220-11e8-9e69-23b20ce80358.jpg" width="600" height="100" /> 
 
-### C. Using API and the [Access Library*]
+### B. Using API and the [Access Library*]
 When do we hit the API? image data ? Screen Scraping ? 
 
 The API of each website provides 'access' to only 'certain information' allowed by the website. For example, by implementing the API of the Rotten Tomatoes, we can get 'critic,audience score', 'critic reviews'. And Rotten Tomatoes' access library(or client library) is called `rtsimple`.
