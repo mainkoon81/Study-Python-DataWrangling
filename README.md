@@ -165,19 +165,53 @@ df_clean.StartDate.value_counts().plot(kind='pie', labels=labelsss)
 
 #### Web Scraping
  - BeautifulSoup is HTML parser written in Python. 
-   - __Step_1.__ Make a soup: passing the path to our HTML file into a **file handle** then passing that **file handle** into the BeautifulSoup constructor. And specify the **parser name** as a parameter of the constructor. 
-   - __Step_2.__  
+ - file handler and soup-constructor
+```
+import requests 
+from bs4 import BeautifulSoup
+```
+ - __Case_1:__ Reading a single HTML file stored in the RAM 
 
+Passing the 'url' to our HTML file into a **file handler** then passing this **file handler**(with adding`.content`) into the 'BeautifulSoup constructor'. And specify the **parser name**.
+```
+url = 'https://www.rottentomatoes.com/m/et_the_extraterrestrial'
+res = requests.get(url) 
 
+soup = BeautifulSoup(res.content, 'lxml'); soup  
+```
+<img src="https://user-images.githubusercontent.com/31917400/37093783-7b0cca80-2208-11e8-84f5-b34a95e185a6.jpg" width="600" height="120" /> 
 
- - 
+ - __Case_2:__ Download a single HTML file and save in our local machine (**where the current ipython file is located**).
 
+Passing the 'url' to our HTML file into a **file handler** then passing this **file handler**(with adding`.content`) into the 'python file writer', matching up this with our made up **file information**(name, path, etc).
+```
+url = 'https://www.rottentomatoes.com/m/et_the_extraterrestrial'
+res = requests.get(url) 
 
+with open('folder_we_want/et_the_extraterrestrial.html', mode='wb') as f:
+    f.write(res.content)
+```
+Of course we can open the file by clicking it, but we need to open it in our python environment. Then we pass the **file information**(name, path, etc) into the 'BeautifulSoup constructor' with the **parser name**. 
+```
+with open('folder_we_want/et_the_extraterrestrial.html') as f: 
+    soup2 = BeautifulSoup(f, 'lxml'); soup2    
+```
+<img src="https://user-images.githubusercontent.com/31917400/37093783-7b0cca80-2208-11e8-84f5-b34a95e185a6.jpg" width="600" height="120" /> 
 
+ - Know all decendents of the HTML file 
+```
+for i in soup.descendants:
+    print(i)
+    print('---------------')
+```
+<img src="https://user-images.githubusercontent.com/31917400/37095375-a7af95a4-220d-11e8-96de-b63240376642.jpg" width="600" height="100" /> 
 
-
-
-
+ - Know all tags of the HTML file
+```
+for tag in soup.find_all(True):
+    print(tag.name)
+```
+<img src="https://user-images.githubusercontent.com/31917400/37095379-a9e5e99a-220d-11e8-83e7-9e958b9b4b38.jpg" width="600" height="100" /> 
 
 
 
