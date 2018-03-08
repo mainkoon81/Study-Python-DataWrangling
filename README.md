@@ -430,6 +430,7 @@ df = df.sort_values('ranking').reset_index(drop=True); df
      - 175 patients switched to 'Auralin' for 24 weeks !
      - 175 patients continued using 'Novodra' for 24 weeks !
    - **'adverse_reactions'**: the adverse reaction reported by the patient
+<img src="https://user-images.githubusercontent.com/31917400/37153167-bbc6b9b6-22d3-11e8-819f-592fec4744f7.jpg" /> 
 
 
 
