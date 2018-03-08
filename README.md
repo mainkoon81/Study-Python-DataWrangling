@@ -424,6 +424,10 @@ df = df.sort_values('ranking').reset_index(drop=True); df
 <img src="https://user-images.githubusercontent.com/31917400/37120354-0fb25404-2252-11e8-9b1e-6d370d9efb45.jpg" width="600" height="180" /> 
 
 # 2. Assessing 
+ - Dataset: 'Phase II clinical trial dataset' for a new oral insulin called 'Auralin'. This dataset comes in three tables: 
+   - 'patients'
+   - 'treatments'
+   - 'adverse_reactions'
 
 
 
