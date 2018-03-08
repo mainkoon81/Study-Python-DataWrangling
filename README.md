@@ -439,8 +439,36 @@ all_columns[all_columns.duplicated()]
 ```
 14 given_name / 15 surname / 21 given_name / 22 surname
 
- - 2) 
-
+ - 2) Findings
+   - **Tidiness** (structure issue):
+     - In patients table, 'Contact' column should be split into phone number and email.
+     - In patients table, Given name and surname columns are duplicated in treatments and adverse_reactions tables
+     - In treatments table, Three variables in two columns (treatment, start dose and end dose)
+     - Adverse reaction should be part of the treatments table
+     
+   - **Quality** (contents issue):
+     - In patients table:
+       - Zip code is a float not a string
+       - Zip code has four digits sometimes
+       - Tim Neudorf height is 27 in instead of 72 in
+       - Full state names sometimes, abbreviations other times
+       - typo..Dsvid Gustafsson
+       - Missing demographic information (address - contact columns) (can't clean)
+       - Erroneous datatypes (assigned sex, state, zip_code, and birthdate columns)
+       - Multiple phone number formats
+       - Default John Doe data
+       - Multiple records for Jakobsen, Gersten, Taylor
+       - kgs instead of lbs for Zaitseva weight
+     - In treatments table
+       - Missing HbA1c changes
+       - The letter 'u' in starting and ending doses for Auralin and Novodra
+       - Lowercase given names and surnames
+       - Missing records (280 instead of 350)
+       - Erroneous datatypes (auralin and novodra columns)
+       - Inaccurate HbA1c changes (leading 4s mistaken as 9s)
+       - Nulls represented as dashes (-) in auralin and novodra columns
+     - In adverse_reactions table
+       - Lowercase given names and surnames
 
 
 
