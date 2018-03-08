@@ -442,34 +442,42 @@ all_columns[all_columns.duplicated()]
  - 2) Findings
    - `df.head(4)`, `df.sample(4)`, `df.info()`, `df.describe()`, `df['col'].value_counts()`, `df['col'].sort_values()`, `df[condition].loc[]`, `df[df['col'].duplicated()]` `sum(df['col'].isnull())` 
    - **Tidiness** (structure issue):
-     - In patients table, 'Contact' column should be split into phone number and email.
-     - In patients table, Given name and surname columns are duplicated in treatments and adverse_reactions tables
-     - In treatments table, Three variables in two columns (treatment, start dose and end dose)
+     - In patients table, **'Contact'** column should be split into phone number and email.
+     - In patients table, **'Given name'** and **'surname'** columns are duplicated in treatments and adverse_reactions tables
+     - In treatments table, Three variables in two columns ('treatment', 'start dose' and 'end dose')
      - Adverse reaction should be part of the treatments table
      
    - **Quality** (contents issue):
      - In patients table:
-       - Zip code is a float not a string
-       - Zip code has four digits sometimes
-       - Tim Neudorf height is 27 in instead of 72 in
-       - Full state names sometimes, abbreviations other times
-       - typo..Dsvid Gustafsson
-       - Missing demographic information (address - contact columns) (can't clean)
-       - Erroneous datatypes (assigned sex, state, zip_code, and birthdate columns)
-       - Multiple phone number formats
+       - **'Zip code'**
+         - is a float(should be a string)
+         - has four digits sometimes(then should start from'0')
+       - **'height'**
+         - Tim Neudorf height is 27(put 72 instead)
+       - **'weight'**
+         - kgs instead of lbs for Zaitseva weight
+       - **'state'**
+         - fullnames sometimes, abbreviations other times(should be consistent)
+       - **'contact'**
+         - Multiple phone number formats
+         - Missing demographic information __can't clean__
+       - TYPO..Dsvid Gustafsson
+       - Erroneous datatypes ('assigned_sex', 'state', 'zip_code', and 'birthdate')
        - Default John Doe data
        - Multiple records for Jakobsen, Gersten, Taylor
-       - kgs instead of lbs for Zaitseva weight
+       
      - In treatments table
-       - Missing HbA1c changes
-       - The letter 'u' in starting and ending doses for Auralin and Novodra
-       - Lowercase given names and surnames
-       - Missing records (280 instead of 350)
-       - Erroneous datatypes (auralin and novodra columns)
-       - Inaccurate HbA1c changes (leading 4s mistaken as 9s)
-       - Nulls represented as dashes (-) in auralin and novodra columns
+       - Missing in **'HbA1c_changes'**       
+       - Inaccurate **'HbA1c_changes'** (leading 4s mistaken as 9s)
+       - Lowercase **'given_names'** and **'surnames'**
+       - The letter 'u' in starting and ending doses for **'auralin'** and **'novodra'**
+       - Erroneous datatypes in **'auralin'** and **'novodra'**
+       - Nulls represented as dashes (-) in **'auralin'** and **'novodra'** 
+       - Missing records (should be 350 instead of 280)       
+
      - In adverse_reactions table
-       - Lowercase given names and surnames
+       - Lowercase in **'given_names'** and **'surnames'**
+
 
 
 
