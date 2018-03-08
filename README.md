@@ -432,10 +432,14 @@ df = df.sort_values('ranking').reset_index(drop=True); df
    - **'adverse_reactions'**: the adverse reaction reported by the patient
 <img src="https://user-images.githubusercontent.com/31917400/37153167-bbc6b9b6-22d3-11e8-819f-592fec4744f7.jpg" /> 
 
+ - 1) If we merge these 3 datasets, investigate the **duplicate** columns: `list(df)` returns a column list..
+```
+all_columns = pd.Series(list(patients) + list(treatments) + list(adverse_reactions))
+all_columns[all_columns.duplicated()]
+```
+14 given_name / 15 surname / 21 given_name / 22 surname
 
-
-
-
+ - 2) 
 
 
 
