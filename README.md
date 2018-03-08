@@ -425,9 +425,11 @@ df = df.sort_values('ranking').reset_index(drop=True); df
 
 # 2. Assessing 
  - Dataset: 'Phase II clinical trial dataset' for a new oral insulin called 'Auralin'. This dataset comes in three tables: 
-   - 'patients'
-   - 'treatments'
-   - 'adverse_reactions'
+   - **'patients'**: some basic information of individuals - id, name, location, appearance, BMI, etc.  
+   - **'treatments'**: 350 patients participated in this clinical trial. None of the patients were using 'Novodra' (a popular injectable insulin) or 'Auralin' (the new oral insulin being researched) as their primary source of insulin before. **All were already experiencing elevated HbA1c levels.** All 350 patients were treated with 'Novodra' first to establish a baseline HbA1c level and insulin dose. After 4 weeks, (which isn’t enough time to capture all the change in HbA1c that can be attributed by the switch to Auralin or Novodra):
+     - 175 patients switched to 'Auralin' for 24 weeks !
+     - 175 patients continued using 'Novodra' for 24 weeks !
+   - **'adverse_reactions'**: the adverse reaction reported by the patient
 
 
 
