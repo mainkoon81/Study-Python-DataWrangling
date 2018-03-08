@@ -441,13 +441,13 @@ all_columns[all_columns.duplicated()]
 
  - 2) Findings
    - `df.head(4)`, `df.sample(4)`, `df.info()`, `df.describe()`, `df['col'].value_counts()`, `df['col'].sort_values()`, `df[condition].loc[]`, `df[df['col'].duplicated()]` `sum(df['col'].isnull())` 
-   - **Tidiness** (structure issue):
+   - **[Tidiness]** (structure issue):
      - In patients table, **'Contact'** column should be split into phone number and email.
      - In patients table, **'Given name'** and **'surname'** columns are duplicated in treatments and adverse_reactions tables
      - In treatments table, Three variables in two columns ('treatment', 'start dose' and 'end dose')
      - Adverse reaction should be part of the treatments table
      
-   - **Quality** (contents issue):
+   - **[Quality]** (contents issue):
      - In patients table:
        - **'Zip code'**
          - is a float(should be a string)
@@ -485,7 +485,7 @@ treatments_clean = treatments.copy()
 adverse_reactions_clean = adverse_reactions.copy()
 ```
 
-> Cleaning for Tidiness
+> Cleaning for [Tidiness]
   - In patients table, **'Contact'** column should be split into **'phone_number'** and **'email'**.
   
 
