@@ -440,6 +440,7 @@ all_columns[all_columns.duplicated()]
 14 given_name / 15 surname / 21 given_name / 22 surname
 
  - 2) Findings
+   - `df.head(4)`, `df.sample(4)`, `df.info()`, `df.describe()`, `df['col'].value_counts()`, `df['col'].sort_values()`, `df[condition].loc[]`, `df[df['col'].duplicated()]` `sum(df['col'].isnull())` 
    - **Tidiness** (structure issue):
      - In patients table, 'Contact' column should be split into phone number and email.
      - In patients table, Given name and surname columns are duplicated in treatments and adverse_reactions tables
