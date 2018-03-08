@@ -478,23 +478,22 @@ all_columns[all_columns.duplicated()]
      - In adverse_reactions table
        - Lowercase in **'given_names'** and **'surnames'**
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # 3. Cleaning
+```
+patients_clean = patients.copy()
+treatments_clean = treatments.copy()
+adverse_reactions_clean = adverse_reactions.copy()
+```
+
+> Cleaning for Tidiness
+  - In patients table, **'Contact'** column should be split into **'phone_number'** and **'email'**.
+  
 
 
+
+  - In patients table, **'Given name'** and **'surname'** columns are duplicated in treatments and adverse_reactions tables
+  - In treatments table, Three variables in two columns ('treatment', 'start dose' and 'end dose')
+  - Adverse reaction should be part of the treatments table
 
 
 
