@@ -485,10 +485,10 @@ treatments_clean = treatments.copy()
 adverse_reactions_clean = adverse_reactions.copy()
 ```
 > Cleaning for [Tidiness]
-### In patients table, **'Contact'** column should be split into **'phone_number'** and **'email'**.
+### 1. In patients table, **'Contact'** column should be split into **'phone_number'** and **'email'**.
 <img src="https://user-images.githubusercontent.com/31917400/37227028-b871318c-23d3-11e8-995a-db6e4f9161be.jpg" width="150" height="300" /> 
 
-  - Let's play with this column !
+  - Let's play with this column(phone_number) !
     - `str.extract(regEx, expand=True)` return a new DataFrame with n columns(defined by the number of group in regEx).
     - `(`
     - `(?:` :  left paren will not count as a group result.
@@ -505,16 +505,30 @@ patients_clean['phone_number'].head(3)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37216043-af59b1a4-23b1-11e8-9983-defba2199a38.jpg" /> 
 
+ - Let's play with this column(email) !
+   - `str.extract(regEx, expand=True)` return a new DataFrame with n columns(defined by the number of group in regEx).
+   - `(`
+   - `[a-zA-Z][a-zA-Z0-9_.+-]+`
+   - `@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+[a-zA-Z]`
+   - `)`
+```
+patients_clean['email'] = patients_clean.contact.str.extract('([a-zA-Z][a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+[a-zA-Z])', expand=True)
+
+patients_clean['email'].sample(3)
+```
+<img src="https://user-images.githubusercontent.com/31917400/37228600-1c5238e0-23d9-11e8-855d-769ea3095bb2.jpg" /> 
+
+ - Drop the original
+```
+patients_clean = patients_clean.drop('contact', axis=1)
+```
+### 2. In patients table, **'Given name'** and **'surname'** columns are duplicated in treatments and adverse_reactions tables
 
 
-
-### In patients table, **'Given name'** and **'surname'** columns are duplicated in treatments and adverse_reactions tables
-
-
-### In treatments table, Three variables in two columns ('treatment', 'start dose' and 'end dose')
+### 3. In treatments table, Three variables in two columns ('treatment', 'start dose' and 'end dose')
 
 
-### Adverse reaction should be part of the treatments table
+### 4. Adverse reaction should be part of the treatments table
 
 
 
