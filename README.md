@@ -526,6 +526,9 @@ patients_clean = patients_clean.drop('contact', axis=1)
 ### 2. In treatments table, Three variables in two columns ('treatment', 'start dose' and 'end dose')
  - From Wide to Long
  - `df2 = pd.melt(df, id_vars=['unaffected_col', 'unaffected_col', ..], var_name="categorical_col", value_name="numerical_col")`
+ - `str.split(str='', num=n)`
+   - str: This is any delimeter, by default it is space.
+   - num: this is number of lines minus one
 ```
 treatments_clean = pd.melt(treatments_clean, id_vars=['given_name', 'surname', 'hba1c_start', 'hba1c_end', 'hba1c_change'],
                            var_name='treatment', value_name='dose')
