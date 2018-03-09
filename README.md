@@ -571,8 +571,14 @@ treatments_clean.head(3)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37233919-24a1c89e-23ed-11e8-950d-fe7441a561da.jpg" /> 
 
+Patient ID should be the only duplicate column. Let's test.
+```
+all_columns = pd.Series(list(patients_clean) + list(treatments_clean))
+all_columns[all_columns.duplicated()]
+```
 
-
+> Cleaning for [Quality]
+### 1. Cleaning for missing data
 
 
 
