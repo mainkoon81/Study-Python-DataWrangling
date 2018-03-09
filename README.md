@@ -541,11 +541,18 @@ treatments_clean.head(3)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37232616-bb0dae7a-23e7-11e8-81fe-656bcbc6629b.jpg" /> 
 
-
-
-
 ### 3. Adverse reaction table should be part of the treatments table
-
+https://chrisalbon.com/python/data_wrangling/pandas_join_merge_dataframe/
+ - `concat()`: when sharing **the same column-names**
+   - `df_new = pd.concat([df_a, df_b])`: stacking vertically.
+   - `df_new = pd.concat([df_a, df_b], axis=1)`: stacking horizontally(..so repeated columns)
+ - `merge()`: when having **different column-names**. It requires the common'key'(ID) columns.
+   - `df_final = pd.merge(df_new, df_c, on='id', how='inner'/'outer')`
+```
+treatments_clean = pd.merge(treatments_clean, adverse_reactions_clean, on=['given_name', 'surname'], how='left')
+treatments_clean.head(3)
+```
+<img src="https://user-images.githubusercontent.com/31917400/37233495-565566a4-23eb-11e8-88ec-8d88a1a94c7c.jpg" /> 
 
 ### 4. In patients, treatments and adverse_reactions tables, **'Given name'** and **'surname'** columns are duplicated.
 
