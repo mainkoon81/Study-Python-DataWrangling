@@ -488,6 +488,7 @@ adverse_reactions_clean = adverse_reactions.copy()
 ### 1. In patients table, **'Contact'** column should be split into **'phone_number'** and **'email'**.
 <img src="https://user-images.githubusercontent.com/31917400/37227028-b871318c-23d3-11e8-995a-db6e4f9161be.jpg" width="150" height="300" /> 
 
+https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.str.extract.html
   - Let's play with this column(phone_number) !
     - `str.extract(regEx, expand=True)` return a new DataFrame with n columns(defined by the number of group in regEx).
     - `(`
