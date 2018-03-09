@@ -523,15 +523,28 @@ patients_clean['email'].sample(3)
 ```
 patients_clean = patients_clean.drop('contact', axis=1)
 ```
-### 2. In patients table, **'Given name'** and **'surname'** columns are duplicated in treatments and adverse_reactions tables
+### 2. In treatments table, Three variables in two columns ('treatment', 'start dose' and 'end dose')
+ - From Wide to Long
+ - `df2 = pd.melt(df, id_vars=['unaffected_col', 'unaffected_col', ..], var_name="categorical_col", value_name="numerical_col")`
+```
+treatments_clean = pd.melt(treatments_clean, id_vars=['given_name', 'surname', 'hba1c_start', 'hba1c_end', 'hba1c_change'],
+                           var_name='treatment', value_name='dose')
+                           
+treatments_clean = treatments_clean[treatments_clean.dose != "-"]
+treatments_clean['dose_start'], treatments_clean['dose_end'] = treatments_clean['dose'].str.split(' - ', 1).str
+treatments_clean = treatments_clean.drop('dose', axis=1)
+
+treatments_clean.head(3)
+```
+<img src="https://user-images.githubusercontent.com/31917400/37232368-9ff048d8-23e6-11e8-96ed-f47b6e44101e.jpg" /> 
 
 
-### 3. In treatments table, Three variables in two columns ('treatment', 'start dose' and 'end dose')
 
 
-### 4. Adverse reaction should be part of the treatments table
+### 3. Adverse reaction table should be part of the treatments table
 
 
+### 4. In patients, treatments and adverse_reactions tables, **'Given name'** and **'surname'** columns are duplicated.
 
 
 
