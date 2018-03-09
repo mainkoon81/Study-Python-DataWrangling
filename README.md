@@ -547,14 +547,29 @@ https://chrisalbon.com/python/data_wrangling/pandas_join_merge_dataframe/
    - `df_new = pd.concat([df_a, df_b])`: stacking vertically.
    - `df_new = pd.concat([df_a, df_b], axis=1)`: stacking horizontally(..so repeated columns)
  - `merge()`: when having **different column-names**. It requires the common'key'(ID) columns.
-   - `df_final = pd.merge(df_new, df_c, on='id', how='inner'/'outer')`
+   - `df_final = pd.merge(df_new, df_c, on='id', how='inner'/'outer'/'left'/'right')`
 ```
 treatments_clean = pd.merge(treatments_clean, adverse_reactions_clean, on=['given_name', 'surname'], how='left')
 treatments_clean.head(3)
 ```
-<img src="https://user-images.githubusercontent.com/31917400/37233495-565566a4-23eb-11e8-88ec-8d88a1a94c7c.jpg" /> 
+<img src="https://user-images.githubusercontent.com/31917400/37233897-0c90f54a-23ed-11e8-89f8-a7dc596ec349.jpg" /> 
 
 ### 4. In patients, treatments and adverse_reactions tables, **'Given name'** and **'surname'** columns are duplicated.
+https://erikrood.com/Python_References/dropping_rows_cols_pandas.html
+ - `df.drop(['row_a', 'row_b'])`: drop a row by name
+ - `df.drop(df.index[0], inplace=True)`: drop a row by index
+ - `df.drop(['col_c'], axis = 1, inplace = True)`: drop a column by name
+```
+id_names = patients_clean[['patient_id', 'given_name', 'surname']]
+id_names.given_name = id_names.given_name.str.lower()
+id_names.surname = id_names.surname.str.lower()
+
+treatments_clean = pd.merge(treatments_clean, id_names, on=['given_name', 'surname'])
+treatments_clean = treatments_clean.drop(['given_name', 'surname'], axis=1)
+
+treatments_clean.head(3)
+```
+<img src="https://user-images.githubusercontent.com/31917400/37233919-24a1c89e-23ed-11e8-950d-fe7441a561da.jpg" /> 
 
 
 
