@@ -493,7 +493,9 @@ adverse_reactions_clean = adverse_reactions.copy()
     - `(`
     - `(?:\+\d{1,2}\s)?`
     - `\(?`
-    - `\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}`
+    - `\d{3}`
+    - `\)?`
+    - `[\s.-]?\d{3}[\s.-]?\d{4}`
     - `)`
 ```
 patients_clean['phone_number'] = patients_clean.contact.str.extract('((?:\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})', expand=True)
