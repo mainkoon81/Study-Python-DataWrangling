@@ -491,7 +491,8 @@ adverse_reactions_clean = adverse_reactions.copy()
   - Let's play with this column !
     - `str.extract(regEx, expand=True)` return a new DataFrame with n columns(defined by the number of group in regEx).
     - `(`
-    - `(?:\+\d{1,2}\s)?`
+    - `(?:` :  left paren will not count as a group result.
+    - `\+\d{1,2}\s)?`
     - `\(?`
     - `\d{3}`
     - `\)?`
