@@ -536,7 +536,7 @@ treatments_clean = treatments_clean.drop('dose', axis=1)
 
 treatments_clean.head(3)
 ```
-<img src="https://user-images.githubusercontent.com/31917400/37232368-9ff048d8-23e6-11e8-96ed-f47b6e44101e.jpg" /> 
+<img src="https://user-images.githubusercontent.com/31917400/37232616-bb0dae7a-23e7-11e8-81fe-656bcbc6629b.jpg" /> 
 
 
 
