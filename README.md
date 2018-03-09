@@ -484,9 +484,10 @@ patients_clean = patients.copy()
 treatments_clean = treatments.copy()
 adverse_reactions_clean = adverse_reactions.copy()
 ```
-
 > Cleaning for [Tidiness]
   - In patients table, **'Contact'** column should be split into **'phone_number'** and **'email'**.
+<img src="https://user-images.githubusercontent.com/31917400/37227028-b871318c-23d3-11e8-995a-db6e4f9161be.jpg" width="150" height="300" /> 
+
   - Let's play with this column !
     - `str.extract(regEx, expand=True)` return a new DataFrame with n columns(defined by the number of group in regEx).
     - `(`
