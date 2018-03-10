@@ -597,7 +597,9 @@ treatments_clean.hba1c_change = (treatments_clean.hba1c_start - treatments_clean
  - a. in 'patients' dataset: **Zip code is a float and Zip code has four digits sometimes.**
    - => Convert the zip code column's datatype from a float to a **string** using `astype()`.
    - => Remove the '.0' using string slicing, and pad four digit zip codes with a leading 0.
-     - `str.pad( , fillchar)`: 
+     - `Series.str.pad(width, side='left', fillchar='')`: Pad strings in the Series with an additional character to specified side.
+       - width: Minimum width of resulting string; additional characters will be filled with spaces.
+       - We expect str's width of 5. If less than 5, filling with '0' to make it '5'.    
 ```
 patients_clean.zip_code = patients_clean.zip_code.astype(str).str[:-2].str.pad(5, fillchar='0')
 ```
