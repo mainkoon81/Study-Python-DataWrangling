@@ -597,12 +597,14 @@ treatments_clean.hba1c_change = (treatments_clean.hba1c_start - treatments_clean
  - a. in 'patients' dataset: **Zip code is a float and Zip code has four digits sometimes.**
    - => Convert the zip code column's datatype from a float to a **string** using `astype()`.
    - => Remove the '.0' using string slicing, and pad four digit zip codes with a leading 0.
+     - `str.pad( , fillchar)`: 
 ```
 patients_clean.zip_code = patients_clean.zip_code.astype(str).str[:-2].str.pad(5, fillchar='0')
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37241368-ca3a2352-244f-11e8-960d-5dfa8ea0cd60.jpg" /> 
 
-   - => Reconvert NaNs entries that were converted to '0000n' by code above
+   - => Reconvert NaNs entries that were converted to '0000n' by code above.
+     - `np.nan` is "NaN" in python
 ```
 patients_clean.zip_code = patients_clean.zip_code.replace('0000n', np.nan)
 
