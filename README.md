@@ -634,20 +634,56 @@ treatments_clean.dose_end = treatments_clean.dose_end.str.strip('u').astype(int)
 ### 3. Fixing values
  - a. In 'patients' dataset: 1)Tim Neudorf height is 27 instead of 72. 2)There are inconsistent state names(Full state names sometimes, abbreviations other times). 3)Dsvid Gustafsson is wrong. 4)There are inconsistent phone number formats. 5)There are non-recoverable John Doe records. 6)There are Multiple records for Jakobsen, Gersten, Taylor. 7)'kgs' instead of 'lbs' for Zaitseva weight. 
    - => 1) Replace height for rows in the patients table that have a height of 27 inch (there is only one) with 72 inch.
+     - `Series.replace(oldvalue, newvalue)`
    - => 2) Apply a function that converts full state name to state abbreviation for California, New York, Illinois, Florida, and Nebraska.
+     - `if Series in DICT.keys():`
+     - `df.apply(func, axis=1)`
    - => 3) Replace given name for rows in the patients table that have a given name of 'Dsvid' with 'David'.
+     - `Series.replace(oldvalue, newvalue)`
    - => 4) Strip all " ", "-", "(", ")", and "+" and store each number without any formatting. Pad the phone number with a 1 if the length of the number is 10 digits (we want country code).
+     - `Series.str.replace(r'\D+', '').str.pad(11, fillchar='1')`
    - => 5) Remove the non-recoverable John Doe records from the patients table.
+     - `df = df[Series != value]`
    - => 6) Remove the Jake Jakobsen, Pat Gersten, and Sandy Taylor rows from the patients table. These are the nicknames, which happen to also not be in the treatments table (removing the wrong name would create a consistency issue between the patients and treatments table). These are all the second occurrence of the duplicate. These are also the only occurences of non-null duplicate addresses.
+     - tilde(~) means not: http://pandas.pydata.org/pandas-docs/stable/indexing.html#boolean-indexing
+     - `df = df[~( (Series.duplicated()) & Series.notnull() )]`
    - => 7) Use advanced indexing to isolate the row where the surname is Zaitseva and convert the entry in its weight field from kg to lbs.
 
+=> 1) Replace height for rows in the patients table that have a height of 27 inch (there is only one) with 72 inch.
 ```
-
+patients_clean.height = patients_clean.height.replace(27, 72)
 ```
+=> 2) Apply a function that converts full state name to state abbreviation for California, New York, Illinois, Florida, and Nebraska.
+```
+state_abbrev = {'California': 'CA', 'New York': 'NY', 'Illinois': 'IL', 'Florida': 'FL', 'Nebraska': 'NE'}
 
+def abbreviate_state(df):
+    if df['state'] in state_abbrev.keys():
+        abbrev = state_abbrev[df['state']]
+        return abbrev
+    else:
+        return df['state']
+    
+patients_clean['state'] = patients_clean.apply(abbreviate_state, axis=1)
 
-
-
+patients_clean.state.value_counts()
+```
+=> 3) Replace given name for rows in the patients table that have a given name of 'Dsvid' with 'David'.
+```
+patients_clean.given_name = patients_clean.given_name.replace('Dsvid', 'David')
+```
+=> 4) Strip all " ", "-", "(", ")", and "+" and store each number without any formatting. Pad the phone number with a 1 if the length of the number is 10 digits (we want country code).
+```
+patients_clean.phone_number = patients_clean.phone_number.str.replace(r'\D+', '').str.pad(11, fillchar='1')
+```
+=> 5) Remove the non-recoverable John Doe records from the patients table.
+```
+patients_clean = patients_clean[patients_clean.surname != 'Doe']
+```
+=> 6) Remove the Jake Jakobsen, Pat Gersten, and Sandy Taylor rows from the patients table. These are the nicknames, which happen to also not be in the treatments table (removing the wrong name would create a consistency issue between the patients and treatments table). These are all the second occurrence of the duplicate. These are also the only occurences of non-null duplicate addresses.
+```
+patients_clean = patients_clean[~( (patients_clean.address.duplicated()) & patients_clean.address.notnull() )]
+```
 
 
 
