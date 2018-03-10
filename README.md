@@ -600,7 +600,9 @@ treatments_clean.hba1c_change = (treatments_clean.hba1c_start - treatments_clean
 ```
 patients_clean.zip_code = patients_clean.zip_code.astype(str).str[:-2].str.pad(5, fillchar='0')
 ```
-Reconvert NaNs entries that were converted to '0000n' by code above
+<img src="https://user-images.githubusercontent.com/31917400/37241368-ca3a2352-244f-11e8-960d-5dfa8ea0cd60.jpg" /> 
+
+   - => Reconvert NaNs entries that were converted to '0000n' by code above
 ```
 patients_clean.zip_code = patients_clean.zip_code.replace('0000n', np.nan)
 
