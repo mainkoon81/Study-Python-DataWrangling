@@ -579,13 +579,20 @@ all_columns[all_columns.duplicated()]
 
 > Cleaning for [Quality]
 ### 1. Cleaning for missing data
+ - a. in 'treatments' dataset: Missing records (280 instead of 350). Let's say the missing treatments records are stored in a df named 'treatments_cut'. Of course it has the same fileds.
+   - => Import the cut treatments into a DataFrame and concatenate it with the original treatments DataFrame.
+```
+treatments_clean = pd.concat([treatments_clean, treatments_cut], ignore_index=True)
+```
+<img src="https://user-images.githubusercontent.com/31917400/37235853-35f6c07e-23fa-11e8-9d53-ec57ab970ca6.jpg" /> 
 
+ - b. in 'treatments' dataset: "Inaccurate HbA1c changes"..
+   - => Recalculate the hba1c_change column: hba1c_start minus hba1c_end.
+```
+treatments_clean.hba1c_change = (treatments_clean.hba1c_start - treatments_clean.hba1c_end)
+```
 
-
-
-
-
-
+### 2. 
 
 
 
