@@ -653,7 +653,7 @@ treatments_clean.dose_end = treatments_clean.dose_end.str.strip('u').astype(int)
    - => 7) Use advanced indexing to isolate the row where the surname is Zaitseva and convert the entry in its weight field from kg to lbs.
      - `df.loc[row_index, column_index] = a value we want`
      - `df.loc[selection criteria, columns I want] = a value we want`
-     - `df.loc[selection criteria, a list of cols] = df.loc[selection criteria, a list of cols].values +,-,*,/ a value we want` 
+     - `df.loc[selection criteria, a list of cols] = df.loc[selection criteria, a list of cols].values (+,-,*,/ .... a calculation I want)` 
      - https://stackoverflow.com/questions/12307099/modifying-a-subset-of-rows-in-a-pandas-dataframe/44913631#44913631
 
 => 1) Replace height for rows in the patients table that have a height of 27 inch (there is only one) with 72 inch.
