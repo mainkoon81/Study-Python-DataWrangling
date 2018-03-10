@@ -694,10 +694,10 @@ patients_clean = patients_clean[~( (patients_clean.address.duplicated()) & patie
 => 7) Use advanced indexing to isolate the row where the surname is Zaitseva and convert the entry in its weight field from kg to lbs.
 ```
 weight_kg = patients_clean.weight.sort_values()[0]
-
 patients_clean.loc[patients_clean.surname == 'Zaitseva', 'weight'] = weight_kg * 2.20462
 ```
-
-
-
+```
+patients_clean.loc[patients_clean.surname == 'Zaitseva', 'weight'] = patients_clean.loc[patients_clean.surname == 'Zaitseva', 'weight'].values * 2.20462 
+```
+Which is right? 
 
