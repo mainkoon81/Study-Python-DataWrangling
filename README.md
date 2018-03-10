@@ -591,6 +591,9 @@ treatments_clean = pd.concat([treatments_clean, treatments_cut], ignore_index=Tr
 ```
 treatments_clean.hba1c_change = (treatments_clean.hba1c_start - treatments_clean.hba1c_end)
 ```
+<img src="https://user-images.githubusercontent.com/31917400/37241112-c268092c-244b-11e8-93b9-8419f3280bb5.jpg" /> 
+
+
 
 ### 2. 
 
