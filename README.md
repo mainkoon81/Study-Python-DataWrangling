@@ -584,7 +584,7 @@ all_columns[all_columns.duplicated()]
 ```
 treatments_clean = pd.concat([treatments_clean, treatments_cut], ignore_index=True)
 ```
-<img src="https://user-images.githubusercontent.com/31917400/37235853-35f6c07e-23fa-11e8-9d53-ec57ab970ca6.jpg" /> 
+<img src="https://user-images.githubusercontent.com/31917400/37241122-f93be68a-244b-11e8-9969-9c7e991fc8d5.jpg" /> 
 
  - b. in 'treatments' dataset: "Inaccurate HbA1c changes"..
    - => Recalculate the hba1c_change column: hba1c_start minus hba1c_end.
