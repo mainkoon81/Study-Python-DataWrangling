@@ -595,7 +595,7 @@ treatments_clean.hba1c_change = (treatments_clean.hba1c_start - treatments_clean
 
 ### 2. Fixing datatype
  - a. in 'patients' dataset: **Zip code is a float and Zip code has four digits sometimes.**
-   - => Convert the zip code column's datatype from a float to a **string** using `astype()`.
+   - => Convert the zip code column's datatype from a float to a **string** using `Series.astype()`.
    - => Remove the '.0' using string slicing, and pad four digit zip codes with a leading 0.
      - `Series.str.pad(width, side='left', fillchar='')`: Pad strings in the Series with an additional character to specified side.
        - width: Minimum width of resulting string; additional characters will be filled with spaces.
