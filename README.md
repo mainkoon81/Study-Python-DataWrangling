@@ -645,7 +645,7 @@ treatments_clean.dose_end = treatments_clean.dose_end.str.strip('u').astype(int)
    - => 5) Remove the non-recoverable John Doe records from the patients table.
      - `df = df[Series != value]`
    - => 6) Remove the Jake Jakobsen, Pat Gersten, and Sandy Taylor rows from the patients table. These are the nicknames, which happen to also not be in the treatments table (removing the wrong name would create a consistency issue between the patients and treatments table). These are all the second occurrence of the duplicate. These are also the only occurences of non-null duplicate addresses.
-     - tilde(~) means not: http://pandas.pydata.org/pandas-docs/stable/indexing.html#boolean-indexing
+     - tilde(~) means **not**: http://pandas.pydata.org/pandas-docs/stable/indexing.html#boolean-indexing
      - `df = df[~( (Series.duplicated()) & Series.notnull() )]`
    - => 7) Use advanced indexing to isolate the row where the surname is Zaitseva and convert the entry in its weight field from kg to lbs.
      - `df.loc[row_index, column_index] = a value we want`
