@@ -693,8 +693,10 @@ patients_clean = patients_clean[~( (patients_clean.address.duplicated()) & patie
 => 7) Use advanced indexing to isolate the row where the surname is Zaitseva and convert the entry in its weight field from kg to lbs.
 ```
 weight_kg = patients_clean.weight.sort_values()[0]
-mask = patients_clean.surname == 'Zaitseva'
-column_name = 'weight'
 
-patients_clean.loc[mask, column_name] = weight_kg * 2.20462
+patients_clean.loc[patients_clean.surname == 'Zaitseva', 'weight'] = weight_kg * 2.20462
 ```
+
+
+
+
