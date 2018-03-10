@@ -632,8 +632,18 @@ treatments_clean.dose_start = treatments_clean.dose_start.str.strip('u').astype(
 treatments_clean.dose_end = treatments_clean.dose_end.str.strip('u').astype(int)
 ```
 ### 3. Fixing values
- - a. 
+ - a. In 'patients' dataset: 1)Tim Neudorf height is 27 instead of 72. 2)There are inconsistent state names(Full state names sometimes, abbreviations other times). 3)Dsvid Gustafsson is wrong. 4)There are inconsistent phone number formats. 5)There are non-recoverable John Doe records. 6)There are Multiple records for Jakobsen, Gersten, Taylor. 7)'kgs' instead of 'lbs' for Zaitseva weight. 
+   - => 1) Replace height for rows in the patients table that have a height of 27 inch (there is only one) with 72 inch.
+   - => 2) Apply a function that converts full state name to state abbreviation for California, New York, Illinois, Florida, and Nebraska.
+   - => 3) Replace given name for rows in the patients table that have a given name of 'Dsvid' with 'David'.
+   - => 4) Strip all " ", "-", "(", ")", and "+" and store each number without any formatting. Pad the phone number with a 1 if the length of the number is 10 digits (we want country code).
+   - => 5) Remove the non-recoverable John Doe records from the patients table.
+   - => 6) Remove the Jake Jakobsen, Pat Gersten, and Sandy Taylor rows from the patients table. These are the nicknames, which happen to also not be in the treatments table (removing the wrong name would create a consistency issue between the patients and treatments table). These are all the second occurrence of the duplicate. These are also the only occurences of non-null duplicate addresses.
+   - => 7) Use advanced indexing to isolate the row where the surname is Zaitseva and convert the entry in its weight field from kg to lbs.
 
+```
+
+```
 
 
 
