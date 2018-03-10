@@ -604,9 +604,9 @@ Reconvert NaNs entries that were converted to '0000n' by code above
 ```
 patients_clean.zip_code = patients_clean.zip_code.replace('0000n', np.nan)
 
-patients_clean.zip_code.head()
+patients_clean.head(3)
 ```
-<img src="https://user-images.githubusercontent.com/31917400/37241221-7fd9641e-244d-11e8-9b31-838ae3fc311a.jpg" /> 
+<img src="https://user-images.githubusercontent.com/31917400/37241259-4b72794e-244e-11e8-97bb-c4f40aa1a94c.jpg" /> 
 
 
 
