@@ -614,6 +614,62 @@ patients_clean.head(3)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37241259-4b72794e-244e-11e8-97bb-c4f40aa1a94c.jpg" /> 
 
+ - b. in 'patients' dataset: 'assigned_sex', 'state', 'zip_code', and 'birthdate' columns have erroneous datatypes. In 'treatments' dataset, 'auralin' and 'novodra' columns carry the unnecessary letter 'u' in starting and ending doses.
+   - => Convert 'assigned_sex' and 'state' to **categorical** datatypes. 'zip_code' datatype was already addressed above. Convert 'birthdate' to **datetime** datatype. Strip the letter 'u' in start dose and end dose and convert those columns to datatype **integer**.
+
+To category: `Series.astype('category')`
+```
+patients_clean.assigned_sex = patients_clean.assigned_sex.astype('category')
+patients_clean.state = patients_clean.state.astype('category')
+```
+To datetime: `pd.to_datetime(Series)`
+```
+patients_clean.birthdate = pd.to_datetime(patients_clean.birthdate)
+```
+Strip u and to integer: `Series.str.strip('u').astype(int)` 
+```
+treatments_clean.dose_start = treatments_clean.dose_start.str.strip('u').astype(int)
+treatments_clean.dose_end = treatments_clean.dose_end.str.strip('u').astype(int)
+```
+### 3. Fixing values
+ - a. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
