@@ -595,7 +595,7 @@ treatments_clean.hba1c_change = (treatments_clean.hba1c_start - treatments_clean
 
 ### 2. Fixing datatype
  - a. in 'patients' dataset: **Zip code is a float and Zip code has four digits sometimes.**
-   - => Convert the zip code column's datatype from a float to a **string** using astype
+   - => Convert the zip code column's datatype from a float to a **string** using `astype()`.
    - => Remove the '.0' using string slicing, and pad four digit zip codes with a leading 0.
 ```
 patients_clean.zip_code = patients_clean.zip_code.astype(str).str[:-2].str.pad(5, fillchar='0')
@@ -606,6 +606,7 @@ patients_clean.zip_code = patients_clean.zip_code.replace('0000n', np.nan)
 
 patients_clean.zip_code.head()
 ```
+<img src="https://user-images.githubusercontent.com/31917400/37241221-7fd9641e-244d-11e8-9b31-838ae3fc311a.jpg" /> 
 
 
 
