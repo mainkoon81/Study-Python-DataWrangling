@@ -543,11 +543,14 @@ treatments_clean.head(3)
 
 ### 3. Adverse reaction table should be part of the treatments table
 https://chrisalbon.com/python/data_wrangling/pandas_join_merge_dataframe/
- - `concat()`: when sharing **the same column-names**
+https://pandas.pydata.org/pandas-docs/stable/merging.html
+ - `pd.concat()`: when sharing **the same column-names**
    - `df_new = pd.concat([df_a, df_b])`: stacking vertically.
    - `df_new = pd.concat([df_a, df_b], axis=1)`: stacking horizontally(..so repeated columns)
- - `merge()`: when having **different column-names**. It requires the common'key'(ID) columns.
-   - `df_final = pd.merge(df_new, df_c, on='id', how='inner'/'outer'/'left'/'right')`
+ - `pd.merge()`: when having **different column-names**. It requires the common'key'(ID) columns.
+   - `df_new2 = pd.merge(df_new, df_c, on='id', how='inner'/'outer'/'left'/'right')`
+ - `df.join()`: when having **different column-names** but without common 'key' columns and 'differently-indexed'. 
+   - `df_new3 = df_new2.join(df_d)`
 ```
 treatments_clean = pd.merge(treatments_clean, adverse_reactions_clean, on=['given_name', 'surname'], how='left')
 treatments_clean.head(3)
