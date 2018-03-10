@@ -484,7 +484,7 @@ patients_clean = patients.copy()
 treatments_clean = treatments.copy()
 adverse_reactions_clean = adverse_reactions.copy()
 ```
-> Cleaning for [Tidiness]
+## > Cleaning for [Tidiness]
 ### 1. In patients table, **'Contact'** column should be split into **'phone_number'** and **'email'**.
 <img src="https://user-images.githubusercontent.com/31917400/37227028-b871318c-23d3-11e8-995a-db6e4f9161be.jpg" width="150" height="300" /> 
 
@@ -577,7 +577,7 @@ all_columns = pd.Series(list(patients_clean) + list(treatments_clean))
 all_columns[all_columns.duplicated()]
 ```
 
-> Cleaning for [Quality]
+## > Cleaning for [Quality]
 ### 1. Cleaning for missing data
  - a. in 'treatments' dataset: Missing records (280 instead of 350). Let's say the missing treatments records are stored in a df named 'treatments_cut'. Of course it has the same fileds.
    - => Import the cut treatments into a DataFrame and concatenate it with the original treatments DataFrame.
