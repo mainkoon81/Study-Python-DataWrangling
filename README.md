@@ -579,23 +579,39 @@ all_columns[all_columns.duplicated()]
 
 ## > Cleaning for [Quality]
 ### 1. Cleaning for missing data
- - a. in 'treatments' dataset: Missing records (280 instead of 350). Let's say the missing treatments records are stored in a df named 'treatments_cut'. Of course it has the same fileds.
+ - a. in 'treatments' dataset: **"Missing records (280 instead of 350)."** Let's say the missing treatments records are stored in a df named 'treatments_cut'. Of course it has the same fileds.
    - => Import the cut treatments into a DataFrame and concatenate it with the original treatments DataFrame.
 ```
 treatments_clean = pd.concat([treatments_clean, treatments_cut], ignore_index=True)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37241122-f93be68a-244b-11e8-9969-9c7e991fc8d5.jpg" /> 
 
- - b. in 'treatments' dataset: "Inaccurate HbA1c changes"..
+ - b. in 'treatments' dataset: **"Inaccurate HbA1c changes"**
    - => Recalculate the hba1c_change column: hba1c_start minus hba1c_end.
 ```
 treatments_clean.hba1c_change = (treatments_clean.hba1c_start - treatments_clean.hba1c_end)
 ```
 <img src="https://user-images.githubusercontent.com/31917400/37241112-c268092c-244b-11e8-93b9-8419f3280bb5.jpg" /> 
 
+### 2. Fixing datatype
+ - a. in 'patients' dataset: **Zip code is a float and Zip code has four digits sometimes.**
+   - => Convert the zip code column's datatype from a float to a **string** using astype
+   - => Remove the '.0' using string slicing, and pad four digit zip codes with a leading 0.
+```
+patients_clean.zip_code = patients_clean.zip_code.astype(str).str[:-2].str.pad(5, fillchar='0')
+```
+Reconvert NaNs entries that were converted to '0000n' by code above
+```
+patients_clean.zip_code = patients_clean.zip_code.replace('0000n', np.nan)
+
+patients_clean.zip_code.head()
+```
 
 
-### 2. 
+
+
+
+
 
 
 
