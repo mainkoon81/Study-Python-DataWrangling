@@ -285,7 +285,8 @@ There are a bunch of different **'Access Libraries'** for 'MediaWiki' to satisfy
 For a MediaWiki, the most up to date and [human readable] one in Python is called `wptools`. For example, the analogous relationship for Twitter is:
  - MediaWiki API → wptools
  - Twitter API → tweepy
- - wptools guideline: (https://github.com/siznax/wptools) 
+ - wptools guideline: (https://github.com/siznax/wptools)
+ - tweepy guideline: (https://media.readthedocs.org/pdf/tweepy/latest/tweepy.pdf)
 ```
 import wptools
 ```
