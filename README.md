@@ -354,6 +354,8 @@ i = Image.open(BytesIO(res.content))
 ```
 ############################################################################################
 
+
+#### So...back to the 'page object', 
 #1. We're going to query the MediaWiki API, using `wptools` to get a **'movie poster URL'** via each page object's image attribute.
 #2. Using that URL, we'll programmatically download that image into a folder called 'bestofrt_posters'.
 
