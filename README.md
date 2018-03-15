@@ -563,7 +563,7 @@ treatments_clean.head(3)
 ### 4. In patients, treatments and adverse_reactions tables, **'Given name'** and **'surname'** columns are duplicated.
 https://erikrood.com/Python_References/dropping_rows_cols_pandas.html
  - `df.drop(['row_a', 'row_b'])`: drop a row by name
- - `df.drop(df.ix[0], inplace=True)`: drop a row by index
+ - `df.drop(df.index[0], inplace=True)`: drop a row by index(It's weird..df.ix[0] doesnt work why why index[0]??)
  - `df.drop(['col_c'], axis = 1, inplace = True)`: drop a column by name
 ```
 id_names = patients_clean[['patient_id', 'given_name', 'surname']]
