@@ -584,9 +584,9 @@ all_columns[all_columns.duplicated()]
 ```
 
 ## > Cleaning for [Quality]
-### 1. Cleaning for missing data
+### 1. Fixing values_01
  - a. in 'treatments' dataset: **"Missing records (280 instead of 350)."** Let's say the missing treatments records are stored in a df named 'treatments_cut'. Of course it has the same fileds.
-   - => Import the cut treatments into a DataFrame and concatenate it with the original treatments DataFrame.
+   - => Import the cut_treatments into a DataFrame and concatenate it with the original treatments DataFrame.
 ```
 treatments_clean = pd.concat([treatments_clean, treatments_cut], ignore_index=True)
 ```
@@ -637,7 +637,7 @@ Strip u and to integer: `Series.str.strip('u').astype(int)`
 treatments_clean.dose_start = treatments_clean.dose_start.str.strip('u').astype(int)
 treatments_clean.dose_end = treatments_clean.dose_end.str.strip('u').astype(int)
 ```
-### 3. Fixing values
+### 3. Fixing values_02
  - a. In 'patients' dataset: 1)Tim Neudorf height is 27 instead of 72. 2)There are inconsistent state names(Full state names sometimes, abbreviations other times). 3)Dsvid Gustafsson is wrong. 4)There are inconsistent phone number formats. 5)There are non-recoverable John Doe records. 6)There are Multiple records for Jakobsen, Gersten, Taylor. 7)'kgs' instead of 'lbs' for Zaitseva weight. 
    - => 1) Replace height for rows in the patients table that have a height of 27 inch (there is only one) with 72 inch.
      - `Series.replace(oldvalue, newvalue)`
