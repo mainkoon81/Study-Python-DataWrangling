@@ -623,6 +623,8 @@ patients_clean.head(3)
 
  - b. in 'patients' dataset: 'assigned_sex', 'state', 'zip_code', and 'birthdate' columns have erroneous datatypes. In 'treatments' dataset, 'auralin' and 'novodra' columns carry the unnecessary letter 'u' in starting and ending doses.
    - => Convert 'assigned_sex' and 'state' to **categorical** datatypes. 'zip_code' datatype was already addressed above. Convert 'birthdate' to **datetime** datatype. Strip the letter 'u' in start dose and end dose and convert those columns to datatype **integer**.
+   - `str()` for individual string
+   - `.astype(str)` for a group of strings.
 
 To category: `Series.astype('category')`
 ```
