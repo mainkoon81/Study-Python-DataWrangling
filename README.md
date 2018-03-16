@@ -550,9 +550,10 @@ https://pandas.pydata.org/pandas-docs/stable/merging.html
  - `pd.concat()`: when sharing **the same column-names**
    - `df_new = pd.concat([df_a, df_b])`: stacking vertically.
    - `df_new = pd.concat([df_a, df_b], axis=1)`: stacking horizontally(..so repeated columns)
+   - *`df_a.append(df_b, ignore_index=True)`: stacking vertically.
  - `pd.merge()`: when having **different column-names**. It requires the common'key'(ID) columns.
    - `df_new2 = pd.merge(df_new, df_c, on='id', how='inner'/'outer'/'left'/'right')`
- - `df.join()`: when having **different column-names** but without common 'key' columns and 'differently-indexed'. 
+ - `df.join()`: when having **different column-names** but W/O common 'key' columns and 'differently-indexed'. 
    - `df_new3 = df_new2.join(df_d)`
 ```
 treatments_clean = pd.merge(treatments_clean, adverse_reactions_clean, on=['given_name', 'surname'], how='left')
