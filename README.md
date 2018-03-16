@@ -585,8 +585,8 @@ all_columns[all_columns.duplicated()]
 
 ## > Cleaning for [Quality]
 ### 1. Fixing values_01
- - a. in 'treatments' dataset: **"Missing records (280 instead of 350)."** Let's say the missing treatments records are stored in a df named 'treatments_cut'. Of course it has the same fileds.
-   - => Import the cut_treatments into a DataFrame and concatenate it with the original treatments DataFrame.
+ - a. in 'treatments' dataset: **"Missing records (280 instead of 350)."** Let's say the missing treatments records are stored in a df named 'treatments_cut' in our local machine. Of course it has the same fileds.
+   - => Import the 'treatments_cut.csv' into a DataFrame and concatenate it with the original treatments DataFrame.
 ```
 treatments_clean = pd.concat([treatments_clean, treatments_cut], ignore_index=True)
 ```
