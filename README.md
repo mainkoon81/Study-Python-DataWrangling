@@ -1,4 +1,4 @@
-# Study-DataWrangling (Python + R)
+# Study-DataWrangling (Python)
 
  > 1. Gathering
  > 2. Assessing
