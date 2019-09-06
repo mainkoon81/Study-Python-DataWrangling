@@ -4,7 +4,7 @@
  > 2. Assessing
  > 3. Cleaning
 
-__command prompt summary__
+__SHELL command prompt summary__
  - HOW to execute commands like changing the working folder, viewing the contents of a directory, creating and renaming folders, copying, deleting files and folders, and launching any application from the Command Prompt ?
  - `cd..`, `dir`, `md`, `ren`
  - copy a file: `copy location\filename.extension newlocation\newname.extension`(If you are copying within the same directory you don't have to put the path in command)
